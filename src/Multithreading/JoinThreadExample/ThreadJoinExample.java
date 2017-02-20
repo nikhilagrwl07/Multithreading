@@ -14,11 +14,13 @@ public class ThreadJoinExample {
 
         //start second thread after waiting for 2 seconds or if it's dead
         try {
+            System.out.println(System.currentTimeMillis());
             t1.join(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        System.out.println(System.currentTimeMillis());
         t2.start();
 
         //start third thread only when first thread is dead
@@ -31,14 +33,14 @@ public class ThreadJoinExample {
         t3.start();
 
         //let all threads finish execution before finishing main thread
-        try {
-            t1.join();
-            t2.join();
-            t3.join();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        try {
+//            t1.join();
+//            t2.join();
+//            t3.join();
+//        } catch (InterruptedException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
         System.out.println("All threads are dead, exiting main thread");
     }

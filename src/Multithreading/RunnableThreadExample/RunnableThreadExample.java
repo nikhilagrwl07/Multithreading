@@ -5,7 +5,7 @@ package Multithreading.RunnableThreadExample;
  */
 
 
-public class RunnableThreadExample implements Runnable
+public class RunnableThreadExample implements Runnable , Interface2
 {
     public int count=0;
 
@@ -33,7 +33,7 @@ public class RunnableThreadExample implements Runnable
     {
         RunnableThreadExample instance=new RunnableThreadExample();
 
-        Thread thread=new Thread(instance);
+        Thread thread=new Thread(instance,"s1");
         thread.setName("Thread 1");
 
         Thread thread2=new Thread(instance);
@@ -46,19 +46,19 @@ public class RunnableThreadExample implements Runnable
 //When we call start() method of Thread class Java Virtual machine execute run() method
 // of that Thread class into separate Thread other than calling thread.
         thread.start();
-//        thread2.start();
-
+        thread2.start();
+//        System.gc();
 
         // Waits until above thread counts to 5(Slowly)
-        while(instance.count!=5){
-            try{
-                System.out.println("Inside Main ==> count= "+instance.count);
-                Thread.sleep(250);
-                //instance.count++;
-            } catch(InterruptedException exc){
-                exc.printStackTrace();
-            }
-        }
+//        while(instance.count<=5){
+//            try{
+//                System.out.println("Inside Main ==> count= "+instance.count);
+//                Thread.sleep(250);
+//                //instance.count++;
+//            } catch(InterruptedException exc){
+//                exc.printStackTrace();
+//            }
+//        }
     }
 
 

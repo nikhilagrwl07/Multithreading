@@ -11,6 +11,7 @@ public class Threads {
         (new SimpleThread("First Thread")).start();
         (new SimpleThread("Second Thread")).start();
         (new SimpleThread("Third Thread")).start();
+
 //        (new SimpleThread("Fourth Thread")).start();
 //        (new SimpleThread("Fivth Thread")).start();
 //        (new SimpleThread("Sixth Thread")).start();
