@@ -4,7 +4,7 @@ import java.math.*;
 import java.util.concurrent.*;
 
 public class MathUtils {
-  private static final ForkJoinPool FORK_JOIN_POOL = new ForkJoinPool();
+  private static final ForkJoinPool FORK_JOIN_POOL = new ForkJoinPool(4);
 
   public static double arraySum(double[] nums, 
                                 int lowerIndex, int upperIndex) {

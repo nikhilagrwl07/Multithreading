@@ -5,29 +5,36 @@ package Multithreading.Java8;
 //import static org.hamcrest.CoreMatchers.*;
 //import static org.hamcrest.number.IsCloseTo.*;
 
+import java.util.stream.DoubleStream;
+
 public class Tester1 {
   public static void main(String[] args) {
     String message1 = "Sequential sum of %,d numbers is %,.4f.";
     String message2 = "Parallel sum of   %,d numbers is %,.4f.";
+    String message3 = "Using DoubleStream sum of   %,d numbers is %,.4f.";
     for (int i=3; i<9; i++) {
       int arraySize = (int)Math.pow(10, i);
       double[] nums = MathUtils.randomNums1(arraySize);
 
-      TimingUtils.timeOp(new Op() {   // () -> String.format(message1, arraySize, sum)
-        @Override
-        public String runOp() {
-          double sum = MathUtils.arraySum(nums);
-          return(String.format(message1, arraySize, sum));
-        }
-      });
-
       TimingUtils.timeOp(new Op() {
         @Override
         public String runOp() {
-          double sum = MathUtils.arraySumParallel(nums);
-          return(String.format(message2, arraySize, sum));
+          double sum = MathUtils.arraySum(nums);
+          return (String.format(message1, arraySize, sum));
         }
       });
+
+      TimingUtils.timeOp(() -> {
+        double sum = MathUtils.arraySumParallel(nums);
+        return(String.format(message2, arraySize, sum));
+      });
+
+      TimingUtils.timeOp(() -> {
+        double sum = DoubleStream.of(nums).parallel().sum();
+        return(String.format(message3, arraySize, sum));
+      });
+
+
     }
   }
   
