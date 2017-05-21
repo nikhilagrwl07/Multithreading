@@ -34,6 +34,10 @@ class SyncThread implements Runnable{
 
     @Override
     public void run() {
+        doWork();
+    }
+
+    private void doWork() {
         String name = Thread.currentThread().getName();
         System.out.println(name + " acquiring lock on " + obj1);
         synchronized (obj1) {
@@ -50,7 +54,8 @@ class SyncThread implements Runnable{
 
         System.out.println(name + " finished execution.");
     }
-//    @Override
+
+    //    @Override
 //    public void run() {
 //        String name = Thread.currentThread().getName();
 //        System.out.println(name + " acquiring lock on "+obj1);

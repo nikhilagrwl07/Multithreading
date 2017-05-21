@@ -7,17 +7,15 @@ package Multithreading.MyCallableExample;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 
-public class MyCallableExample implements Callable<String> {
+public class MyCallableExample  {
 
-    @Override
-    public String call() throws Exception {
+     private static String doWorkInsideCall() throws InterruptedException {
         Thread.sleep(1000);
         //return the thread name executing this callable task
         return Thread.currentThread().getName();
@@ -31,12 +29,9 @@ public class MyCallableExample implements Callable<String> {
         //create a list to hold the Future object associated with Callable
         List<Future<String>> list = new ArrayList<>();
 
-        //Create MyCallable instance
-        Callable<String> callable = new MyCallableExample();
-
         for(int i=0; i< 100; i++){
             //submit Callable tasks to be executed by thread pool
-            Future<String> future = executor.submit(callable);
+            Future<String> future = executor.submit(MyCallableExample::doWorkInsideCall);
             //add Future to the list, we can get return value using Future
             list.add(future);
         }

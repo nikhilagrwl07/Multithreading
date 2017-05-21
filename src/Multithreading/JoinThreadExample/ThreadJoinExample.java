@@ -6,9 +6,9 @@ package Multithreading.JoinThreadExample;
 public class ThreadJoinExample {
 
     public static void main(String[] args) {
-        Thread t1 = new Thread(new MyRunnable(), "t1");
-        Thread t2 = new Thread(new MyRunnable(), "t2");
-        Thread t3 = new Thread(new MyRunnable(), "t3");
+        Thread t1 = new Thread(ThreadJoinExample::doWork, "t1");
+        Thread t2 = new Thread(ThreadJoinExample::doWork, "t2");
+        Thread t3 = new Thread(ThreadJoinExample::doWork, "t3");
 
         t1.start();
 
@@ -45,13 +45,7 @@ public class ThreadJoinExample {
         System.out.println("All threads are dead, exiting main thread");
     }
 
-}
-
-
-class MyRunnable implements Runnable{
-
-    @Override
-    public void run() {
+    private static void doWork() {
         System.out.println("Thread started:::"+Thread.currentThread().getName());
         try {
             Thread.sleep(4000);
@@ -60,5 +54,4 @@ class MyRunnable implements Runnable{
         }
         System.out.println("Thread ended:::"+Thread.currentThread().getName());
     }
-
 }

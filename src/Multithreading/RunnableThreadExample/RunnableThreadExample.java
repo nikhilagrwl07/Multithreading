@@ -5,13 +5,16 @@ package Multithreading.RunnableThreadExample;
  */
 
 
-public class RunnableThreadExample implements Runnable , Interface2
+public class RunnableThreadExample
 {
-    public int count=0;
-
-    @Override
-    public void run()
+    private static int count=0;
+    public static void main(String args[])
     {
+        new Thread(RunnableThreadExample::RunLogic, "Thread1").start();
+        new Thread(RunnableThreadExample:: RunLogic , "Thread2").start();
+    }
+
+     private static void RunLogic() {
         System.out.println("Runnable thread starting.");
         try{
             while(count<5)
@@ -27,38 +30,6 @@ public class RunnableThreadExample implements Runnable , Interface2
         }
 
         System.out.println("Runnable thread terminating.");
-    }
-
-    public static void main(String args[])
-    {
-        RunnableThreadExample instance=new RunnableThreadExample();
-
-        Thread thread=new Thread(instance,"s1");
-        thread.setName("Thread 1");
-
-        Thread thread2=new Thread(instance);
-        thread2.setName("Thread 2");
-
-//No new address will be created and process will run in same add space
-//method will simply be executed in the same Thread and new Thread will not be created
-        //instance.run();
-
-//When we call start() method of Thread class Java Virtual machine execute run() method
-// of that Thread class into separate Thread other than calling thread.
-        thread.start();
-        thread2.start();
-//        System.gc();
-
-        // Waits until above thread counts to 5(Slowly)
-//        while(instance.count<=5){
-//            try{
-//                System.out.println("Inside Main ==> count= "+instance.count);
-//                Thread.sleep(250);
-//                //instance.count++;
-//            } catch(InterruptedException exc){
-//                exc.printStackTrace();
-//            }
-//        }
     }
 
 
