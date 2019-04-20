@@ -23,17 +23,21 @@ public class ThreadDeadlock {
     }
 }
 
-class SyncThread implements Runnable{
+class SyncThread implements Runnable {
     private Object obj1;
     private Object obj2;
 
-    public SyncThread(Object o1, Object o2){
-        this.obj1=o1;
-        this.obj2=o2;
+    public SyncThread(Object o1, Object o2) {
+        this.obj1 = o1;
+        this.obj2 = o2;
     }
 
     @Override
     public void run() {
+        doWork();
+    }
+
+    private void doWork() {
         String name = Thread.currentThread().getName();
         System.out.println(name + " acquiring lock on " + obj1);
         synchronized (obj1) {
