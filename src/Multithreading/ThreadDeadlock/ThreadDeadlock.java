@@ -41,6 +41,7 @@ class SyncThread implements Runnable{
             work();
         }
         System.out.println(name + " released lock on " + obj1);
+
         System.out.println(name + " acquiring lock on " + obj2);
         synchronized (obj2) {
             System.out.println(name + " acquired lock on " + obj2);
@@ -50,23 +51,7 @@ class SyncThread implements Runnable{
 
         System.out.println(name + " finished execution.");
     }
-//    @Override
-//    public void run() {
-//        String name = Thread.currentThread().getName();
-//        System.out.println(name + " acquiring lock on "+obj1);
-//        synchronized (obj1) {
-//            System.out.println(name + " acquired lock on "+obj1);
-//            work();
-//            System.out.println(name + " acquiring lock on "+obj2);
-//            synchronized (obj2) {
-//                System.out.println(name + " acquired lock on "+obj2);
-//                work();
-//            }
-//            System.out.println(name + " released lock on "+obj2);
-//        }
-//        System.out.println(name + " released lock on "+obj1);
-//        System.out.println(name + " finished execution.");
-//    }
+
     private void work() {
         try {
             Thread.sleep(30000);

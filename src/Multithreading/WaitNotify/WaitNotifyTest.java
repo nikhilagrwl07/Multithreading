@@ -1,4 +1,4 @@
-package Multithreading.WaitNotifyExample;
+package Multithreading.WaitNotify;
 
 /**
  * Created by nikhilagrawal on 10/08/16.

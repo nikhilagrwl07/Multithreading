@@ -7,7 +7,7 @@ package Multithreading.DiningPhilosopherProblem;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-//Everything about a particluar chopstick
+//Everything about a particular chopstick
 class Chopstick {
     public Lock lock;
     public String name;
@@ -18,14 +18,11 @@ class Chopstick {
 
     // type of lock I want to put
     public Chopstick() {
-
         lock = new ReentrantLock();
-
     }
 
     public boolean pickup() {
-        System.out.println("Tring to pickup");
-//       lock.lock();
+        System.out.println("Trying to pickup");
         return lock.tryLock();
     }
 
@@ -36,7 +33,7 @@ class Chopstick {
 
 }
 
-// Now classs of person (philosopher in this case)
+// Now class of person (philosopher in this case)
 // I am writing for one person
 
 class Philosopher extends Thread {

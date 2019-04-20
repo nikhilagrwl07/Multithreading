@@ -3,27 +3,31 @@ package Multithreading.ThreadSafety;
 /**
  * Created by nikhilagrawal on 10/08/16.
  */
-public class ThreadSafety {
+public class Example2 {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ProcessingThread pt = new ProcessingThread();
-        Thread t1 = new Thread(pt, "t1");
+        ProcessingRunnable runnable = new ProcessingRunnable();
+        Thread t1 = new Thread(runnable, "t1");
         t1.start();
-        Thread t2 = new Thread(pt, "t2");
+        Thread t2 = new Thread(runnable, "t2");
         t2.start();
         //wait for threads to finish processing
         t1.join();
         t2.join();
-        System.out.println("Processing count="+pt.getCount());
+        System.out.println("Processing count="+runnable.getCount());
     }
 
 }
 
-class ProcessingThread implements Runnable{
+class ProcessingRunnable implements Runnable{
 
     private int count;
-    private final Object mutex=new Object();
+    private final Object mutex;
+
+    ProcessingRunnable() {
+        mutex = new Object();
+    }
 
     @Override
     public void run() {

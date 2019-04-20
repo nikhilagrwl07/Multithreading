@@ -16,12 +16,9 @@ public class Tester1 {
       int arraySize = (int)Math.pow(10, i);
       double[] nums = MathUtils.randomNums1(arraySize);
 
-      TimingUtils.timeOp(new Op() {
-        @Override
-        public String runOp() {
-          double sum = MathUtils.arraySum(nums);
-          return (String.format(message1, arraySize, sum));
-        }
+      TimingUtils.timeOp(() -> {
+        double sum = MathUtils.arraySum(nums);
+        return (String.format(message1, arraySize, sum));
       });
 
       TimingUtils.timeOp(() -> {

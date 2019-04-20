@@ -1,4 +1,4 @@
-package Multithreading.WaitNotifyExample;
+package Multithreading.WaitNotify;
 
 /**
  * Created by nikhilagrawal on 10/08/16.
@@ -18,7 +18,7 @@ public class Notifier implements Runnable {
         try {
             Thread.sleep(1000);
             synchronized (msg) {
-                System.out.println("Inside Notifer.........................");
+                System.out.println("Inside Notifier.........................");
                 msg.setMsg(name+" Notifier work done");
 //                msg.notify();
                  msg.notifyAll();

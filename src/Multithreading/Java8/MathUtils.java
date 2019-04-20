@@ -19,19 +19,6 @@ public class MathUtils {
     return(arraySum(nums, 0, nums.length-1));
   }
 
-  public static Double arraySum(Double[] nums, 
-                                int lowerIndex, int upperIndex) {
-    double sum = 0;
-    for(int i=lowerIndex; i<=upperIndex; i++) {
-      sum += nums[i];
-    }
-    return(sum);
-  }
-  
-  public static Double arraySum(Double[] nums) {
-    return(arraySum(nums, 0, nums.length-1));
-  }
-  
   public static Double arraySumParallel(double[] nums) {
     return(FORK_JOIN_POOL.invoke(new ParallelArraySummer(nums, 0, nums.length-1)));
   }

@@ -1,4 +1,4 @@
-package Multithreading.JoinThreadExample;
+package Multithreading.ThreadJoin;
 
 /**
  * Created by nikhilagrawal on 10/08/16.
@@ -12,7 +12,6 @@ public class ThreadJoinExample {
 
         t1.start();
 
-        //start second thread after waiting for 2 seconds or if it's dead
         try {
             System.out.println(System.currentTimeMillis());
             t1.join(2000);
@@ -20,27 +19,27 @@ public class ThreadJoinExample {
             e.printStackTrace();
         }
 
-        System.out.println(System.currentTimeMillis());
+        //start second thread after waiting for 2 seconds or if it's dead
         t2.start();
 
-        //start third thread only when first thread is dead
         try {
             t1.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        //start third thread only when first thread is dead
         t3.start();
 
-        //let all threads finish execution before finishing main thread
-//        try {
-//            t1.join();
-//            t2.join();
-//            t3.join();
-//        } catch (InterruptedException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
+//        let all threads finish execution before finishing main thread
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         System.out.println("All threads are dead, exiting main thread");
     }
@@ -48,17 +47,17 @@ public class ThreadJoinExample {
 }
 
 
-class MyRunnable implements Runnable{
+class MyRunnable implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Thread started:::"+Thread.currentThread().getName());
+        System.out.println("Thread started:::" + Thread.currentThread().getName());
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Thread ended:::"+Thread.currentThread().getName());
+        System.out.println("Thread ended:::" + Thread.currentThread().getName());
     }
 
 }
